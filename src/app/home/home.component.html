@@ -1,0 +1,83 @@
+<div class="top">
+  <div class="row">
+    <div class="col-md-12">
+      <span>
+        <mat-form-field appearance="outline">
+          <mat-label>Movie Name</mat-label>
+          <input
+            matInput
+            placeholder="Placeholder"
+            [formControl]="movie_name"
+          />
+        </mat-form-field>
+      </span>
+      <span>
+        <mat-form-field appearance="outline">
+          <mat-label>Year</mat-label>
+          <input
+            matInput
+            placeholder="Placeholder"
+            [formControl]="movie_year"
+          />
+          <mat-hint>For precise result add year</mat-hint>
+        </mat-form-field>
+      </span>
+      <span>
+        <button mat-raised-button (click)="search()">Search</button>
+      </span>
+    </div>
+  </div>
+  <div class="center" *ngIf="show">
+    <mat-card class="example-card">
+      <img mat-card-image src="{{ Poster }}" alt="Poster of movie" />
+      <mat-card-content>
+        <mat-card-title>{{ Title }}</mat-card-title>
+        <mat-card-subtitle>{{ Year }}</mat-card-subtitle>
+
+        <p>Rated : {{ Rated }}</p>
+        <p>Released : {{ Released }}</p>
+        <p>Runtime : {{ Runtime }}</p>
+        <p>Genre : {{ Genre }}</p>
+        <p>Director : {{ Director }}</p>
+        <p>Writer : {{ Writer }}</p>
+        <p>Actors : {{ Actors }}</p>
+        <p>Plot : {{ Plot }}</p>
+        <p>Languages : {{ Language }}</p>
+        <p>Country : {{ Country }}</p>
+        <p>Awards : {{ Awards }}</p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button color="primary" (click)="add2list()">Add To List</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+  <div class="side" *ngIf="show">
+    <div class="scroll">
+      <h1>My List</h1>
+      <div class="col-md-12">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Movie Name</th>
+              <th scope="col">Year</th>
+              <th scope="col">Duration</th>
+              <th scope="col">Rating</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <th>{{m_name}}</th>
+              <td>{{m_year}}</td>
+              <td>{{m_duration}}</td>
+              <td>{{m_rating}}</td>
+              
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    
+    </div>
+  </div>
+</div>
