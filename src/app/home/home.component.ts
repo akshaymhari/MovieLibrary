@@ -6,53 +6,57 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
-
-  public show:boolean = false;
+  public show: boolean = false;
   watchlist: any;
   movie_name = new FormControl('');
   movie_year = new FormControl('');
-  Title = "";
-  Year = "";
-  Rated = "";
-  Released = "";
-  Runtime = "";
-  Genre = "";
-  Director = "";
-  Writer = "";
-  Actors = "";  
-  Plot = "";
-  Language = "";
-  Country = "";
-  Awards = "";
-  Poster = "";
+  Title = '';
+  Year = '';
+  Rated = '';
+  Released = '';
+  Runtime = '';
+  Genre = '';
+  Director = '';
+  Writer = '';
+  Actors = '';
+  Plot = '';
+  Language = '';
+  Country = '';
+  Awards = '';
+  Poster = '';
 
-  m_name = "";
-  m_year = "";
-  m_duration = "";
-  m_rating = "";
-  constructor(private http: HttpClient,private loginService:LoginService,private router: Router) { }
+  m_name = '';
+  m_year = '';
+  m_duration = '';
+  m_rating = '';
+  constructor(
+    private http: HttpClient,
+    private loginService: LoginService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
-    if(this.loginService.login_status == true){
+    if (this.loginService.login_status == true) {
       this.router.navigate(['home']);
-    }
-    else{
-      this.router.navigate([''])
+    } else {
+      this.router.navigate(['']);
     }
   }
-  search(){
-
-
-    let mname=this.movie_name.value;
-    let myear=this.movie_year.value;
+  search() {
+    let mname = this.movie_name.value;
+    let myear = this.movie_year.value;
     mname = mname.split(' ').join('+');
-    let link = 'https://www.omdbapi.com/?t='+mname+'&y='+myear+'&apikey=dc12527f'
-    
-    this.http.get<any>(link).subscribe(data => {
-      //this.totalAngularPackages = data.total;
+    let link =
+      'https://www.omdbapi.com/?t=' +
+      mname +
+      '&y=' +
+      myear +
+      '&apikey=dc12527f';
+
+    this.http.get<any>(link).subscribe((data) => {
       this.Title = data.Title;
       this.Year = data.Year;
       this.Rated = data.Rated;
@@ -66,21 +70,19 @@ export class HomeComponent implements OnInit {
       this.Language = data.Language;
       this.Country = data.Country;
       this.Awards = data.Awards;
-      this.Poster = data.Poster
+      this.Poster = data.Poster;
 
       this.watchlist = data;
       this.show = true;
       this.movie_name.reset();
       this.movie_year.reset();
-      
-  })   
+    });
   }
 
-  add2list(){
-   this.m_name =  this.Title;
-   this.m_year = this.Year;
-   this.m_duration =  this.Runtime;
-   this.m_rating = this.Rated;
-
+  add2list() {
+    this.m_name = this.Title;
+    this.m_year = this.Year;
+    this.m_duration = this.Runtime;
+    this.m_rating = this.Rated;
   }
 }
