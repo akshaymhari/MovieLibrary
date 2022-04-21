@@ -22,15 +22,6 @@ export class SignupComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  signup(){
-
-    // let finaldata = {
-    //   'fname': this.fname.value,
-    //   'lname': this.lname.value,
-    //   'email': this.email.value,
-    //   'password': this.password.value
-    // }
-    // console.log(finaldata);
-
+  signup() {
   }
 }
