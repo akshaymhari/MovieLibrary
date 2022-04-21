@@ -31,5 +31,8 @@ export class LoginComponent implements OnInit {
       this.loginService.login_status = true;
       this.router.navigate(['home']);
     }
+    else{
+      alert("Email or password incorrect !");
+    }
   }
 }
